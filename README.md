@@ -44,6 +44,10 @@ Here are some helpful instructions to use the latest code:
 9. Initialize projects from Case Studies (projects and scenarios) in "celdb":  [case_study_projects.sql](https://github.com/edgarsc22/WACeL-Java/blob/master/sqlscript/case_study_projects.sql)
 
  10. go to http://localhost:8080/WACeL-Java and Test with user "test" and password "123456" (change!)
+ 
+##  Refactorizacion
+Para la creacion de la clase [Defect] se utulizo el patron de diseño [Factory]
+
     
 ##  Case Studies
   There are some real **projects** in the literature, and as a result, we selected 4 projects to evaluate the _accuracy_ of the heuristics implemented in the C&L tool:      [Case Studies](https://github.com/edgarsc22/WACeL-Java/blob/master/docs/CeL%20and%20Case%20Study.pdf)
