@@ -46,7 +46,11 @@ Here are some helpful instructions to use the latest code:
  10. go to http://localhost:8080/WACeL-Java and Test with user "test" and password "123456" (change!)
  
 ##  Refactorizacion
-Para la creacion de la clase [Defect] se utulizo el patron de diseño [Factory]
+Para la creacion de la clase **Defect** se utulizo el patron de diseño **Factory**
+
+![Factoring](img/factory1.png)
+
+![Factoring](img/factory2.png)
 
     
 ##  Case Studies
