@@ -59,6 +59,8 @@ Este seria el código despues de la refactorización
 **AnalysisController.java** se usó el patron de diseño **Factory**
 ![Factoring](img/factory4.png)
 
+![Factoring](img/factory5.png)
+
     
 ##  Case Studies
   There are some real **projects** in the literature, and as a result, we selected 4 projects to evaluate the _accuracy_ of the heuristics implemented in the C&L tool:      [Case Studies](https://github.com/edgarsc22/WACeL-Java/blob/master/docs/CeL%20and%20Case%20Study.pdf)
