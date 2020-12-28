@@ -55,15 +55,10 @@ public class CompletenessAnalysisServiceImpl implements ICompletenessAnalysisSer
 				//Indicator: The title contains more than one action-verb, subject or object
 				for (CustomToken token : titleNlp.getTokens()) {
 					if(token.getWord().equals(indicator)) {
-						Defect defect = new Defect(); 
-						defect.setQualityProperty(QualityPropertyEnum.ATOMICITY.getQualityProperty());
-						defect.setScenarioId(structuredScenario.getId());
-						defect.setScenarioElement(ScenarioElement.TITLE.getScenarioElement());
-						defect.setIndicator(DefectIndicatorEnum.ATOMICITY_TITLE_MULTIPLE_SITUATION_INDICATOR.getDefectIndicator());
-						defect.setIndicator(defect.getIndicator().replace("<sentence>", structuredScenario.getTitle()));
-						defect.setIndicator(defect.getIndicator().replace("<indicator>", indicator));
-						defect.setDefectCategory(DefectCategoryEnum.WARNING.getDefectCategory());
-						defect.setFixRecomendation(DefectIndicatorEnum.ATOMICITY_TITLE_MULTIPLE_SITUATION_INDICATOR.getFixRecomendation());
+						Defect defect = Factory.buildDefect(
+								structuredScenario,
+								DefectIndicatorEnum.ATOMICITY_TITLE_MULTIPLE_SITUATION_INDICATOR,
+								indicator);
 						defects.add(defect)	;
 						break;
 					}
@@ -84,29 +79,17 @@ public class CompletenessAnalysisServiceImpl implements ICompletenessAnalysisSer
 			
 			//Indicator: Unnecessary Subjects in the title
 			if(titleNlp.getSubjects() != null && !titleNlp.getSubjects().isEmpty()) {
-				Defect defect = new Defect(); 
-				defect.setQualityProperty(QualityPropertyEnum.ATOMICITY.getQualityProperty());
-				defect.setScenarioId(structuredScenario.getId());
-				defect.setScenarioElement(ScenarioElement.TITLE.getScenarioElement());
-				defect.setIndicator(DefectIndicatorEnum.ATOMICITY_TITLE_UNNECESSARY_SUBJECT_INDICATOR.getDefectIndicator());
-				defect.setIndicator(defect.getIndicator().replace("<sentence>", structuredScenario.getTitle()));
-				defect.setIndicator(defect.getIndicator().replace("<indicator>", titleNlp.getSubjectsAsString()));
-				defect.setDefectCategory(DefectCategoryEnum.INFO.getDefectCategory());
-				defect.setFixRecomendation(DefectIndicatorEnum.ATOMICITY_TITLE_UNNECESSARY_SUBJECT_INDICATOR.getFixRecomendation());
+				Defect defect = Factory.buildDefect(structuredScenario,
+						DefectIndicatorEnum.ATOMICITY_TITLE_UNNECESSARY_SUBJECT_INDICATOR,
+						titleNlp.getSubjectsAsString());
 				defects.add(defect)	;
 			}
 			//Indicator: Missing Object in the title
 			if((titleNlp.getDirectObjects() == null || titleNlp.getDirectObjects().isEmpty())
 					&& (titleNlp.getIndirectObjects() == null || titleNlp.getIndirectObjects().isEmpty())) {//OK?
-				Defect defect = new Defect(); 
-				defect.setQualityProperty(QualityPropertyEnum.ATOMICITY.getQualityProperty());
-				defect.setScenarioId(structuredScenario.getId());
-				defect.setScenarioElement(ScenarioElement.TITLE.getScenarioElement());
-				defect.setIndicator(DefectIndicatorEnum.ATOMICITY_TITLE_MISSING_OBJECT_INDICATOR.getDefectIndicator());
-				defect.setIndicator(defect.getIndicator().replace("<sentence>", structuredScenario.getTitle()));
-				//defect.setIndicator(defect.getIndicator().replace("<indicator>", indicator));
-				defect.setDefectCategory(DefectCategoryEnum.WARNING.getDefectCategory());
-				defect.setFixRecomendation(DefectIndicatorEnum.ATOMICITY_TITLE_MISSING_OBJECT_INDICATOR.getFixRecomendation());
+				Defect defect = Factory.buildDefect(
+						structuredScenario,
+						DefectIndicatorEnum.ATOMICITY_TITLE_MISSING_OBJECT_INDICATOR,"");
 				defects.add(defect)	;
 			}
 			//Indicator: Missing Action-Verb in the title
@@ -117,7 +100,6 @@ public class CompletenessAnalysisServiceImpl implements ICompletenessAnalysisSer
 				defect.setScenarioElement(ScenarioElement.TITLE.getScenarioElement());
 				defect.setIndicator(DefectIndicatorEnum.ATOMICITY_TITLE_MISSING_ACTION_VERB_INDICATOR.getDefectIndicator());
 				defect.setIndicator(defect.getIndicator().replace("<sentence>", structuredScenario.getTitle()));
-				//defect.setIndicator(defect.getIndicator().replace("<indicator>", indicator));
 				defect.setDefectCategory(DefectCategoryEnum.WARNING.getDefectCategory());
 				defect.setFixRecomendation(DefectIndicatorEnum.ATOMICITY_TITLE_MISSING_ACTION_VERB_INDICATOR.getFixRecomendation());
 				defects.add(defect)	;
