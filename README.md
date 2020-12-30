@@ -50,7 +50,7 @@ Para la refactorización de la clase **Defect** se utilizó el patron de diseño
 
 ![Factoring](img/factory3.png)
 
-Este seria el código despues de la refactorización
+Este seria el código despues de la refactorización.
 
 ![Factoring](img/factory1.png)
 
